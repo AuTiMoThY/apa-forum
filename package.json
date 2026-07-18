@@ -2,6 +2,7 @@
     "scripts": {
         "admin:install": "cd admin && pnpm install",
         "admin": "cd admin && pnpm run dev",
-        "api": "cd api && php spark serve"
+        "frontend": "cd frontend && php spark serve --host 0.0.0.0 --port 8090",
+        "api": "cd api && php spark serve --host 0.0.0.0 --port 8092"
     }
 }
