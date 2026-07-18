@@ -1,0 +1,7 @@
+{
+    "scripts": {
+        "admin:install": "cd admin && pnpm install",
+        "admin": "cd admin && pnpm run dev",
+        "api": "cd api && php spark serve"
+    }
+}

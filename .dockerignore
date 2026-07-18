@@ -1,0 +1,39 @@
+#
+# docker build context 可能包含大量圖片上傳檔，會讓建置極慢
+# 這份 .dockerignore 會排除這些檔案，讓 api 映像 rebuild 更快
+#
+
+api/public/uploads
+api/public/uploads/**
+
+# composer 可能產生/下載的快取目錄（可選，避免誤帶入）
+api/vendor
+api/vendor/**
+
+# Windows 系統檔
+Thumbs.db
+desktop.ini
+
+node_modules
+.nuxt
+dist
+.git
+.gitignore
+.env
+.env.local
+*.log
+.DS_Store
+Thumbs.db
+vendor
+writable/cache/*
+writable/logs/*
+writable/session/*
+writable/debugbar/*
+docker/
+!docker/php/php.ini
+!docker/php/entrypoint.sh
+docker-compose*.yml
+compose.yaml
+.dockerignore
+README*.md
+docs/
