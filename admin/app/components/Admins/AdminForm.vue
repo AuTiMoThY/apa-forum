@@ -1,7 +1,8 @@
 <script lang="ts" setup>
-import type { AdminForm, AdminFormErrors } from "~/types/admin";
+import type { AdminForm } from "~/types/admin";
 import ImageUploadSingle from "~/components/Form/ImageUploadSingle.vue";
 import FormDateField from "~/components/Form/DateField.vue";
+import FormPermissionPicker from "~/components/Form/PermissionPicker.vue";
 
 const props = withDefaults(
     defineProps<{
@@ -23,8 +24,6 @@ const password2Show = ref(false);
 
 // RBAC 相關
 const { data: roleData, fetchData: fetchRoles } = useRole();
-const { data: permissionData, fetchData: fetchPermissions } =
-    usePermissionData();
 const { isSuperAdmin } = usePermission();
 
 const { public: runtimePublic } = useRuntimeConfig();
@@ -124,12 +123,16 @@ const handleSubmit = async (event?: Event) => {
     }
 };
 
-// 載入角色和權限資料
 onMounted(async () => {
     await fetchRoles();
-    await fetchPermissions();
 });
 
+const directPermissionIds = computed({
+    get: () => form.permission_ids ?? [],
+    set: (value: number[]) => {
+        form.permission_ids = value;
+    }
+});
 
 // 暴露方法給父組件
 const photoUploadRef = ref<InstanceType<typeof ImageUploadSingle> | null>(null);
@@ -144,7 +147,12 @@ defineExpose({
     <PageLoading v-if="loading" />
     <template v-else>
         <UForm :state="form" @submit="handleSubmit" class="">
-            <section class="frm-bd grid grid-cols-2 gap-4 max-sm:grid-cols-1">
+            <section
+                class="frm-bd grid gap-4 max-sm:grid-cols-1"
+                :class="{
+                    'grid-cols-1': !isSuperAdmin(),
+                    'grid-cols-2': isSuperAdmin()
+                }">
                 <UCard :ui="{ body: 'space-y-4' }">
                     <template #header>
                         <h3 class="text-lg font-semibold">基本資訊</h3>
@@ -341,7 +349,7 @@ defineExpose({
                     </UFormField>
                 </UCard>
 
-                <UCard :ui="{ body: 'space-y-4' }">
+                <UCard v-if="isSuperAdmin()" :ui="{ body: 'space-y-4' }">
                     <template #header>
                         <h3 class="text-lg font-semibold">角色&權限</h3>
                     </template>
@@ -379,35 +387,12 @@ defineExpose({
                     </UFormField>
 
                     <UFormField
-                        label="直接權限（可選，會覆蓋角色權限）"
+                        label="直接權限（可選，在角色權限之外額外授予）"
                         name="permission_ids"
                         :error="errors.permission_ids">
-                        <div
-                            class="space-y-2 max-h-60 overflow-y-auto border rounded-lg p-4">
-                            <div
-                                v-if="permissionData.length === 0"
-                                class="text-sm text-gray-500">
-                                暫無權限資料
-                            </div>
-                            <div v-else class="space-y-2">
-                                <label
-                                    v-for="permission in permissionData"
-                                    :key="permission.id"
-                                    class="flex items-center space-x-2 cursor-pointer hover:bg-gray-50 p-2 rounded">
-                                    <input
-                                        type="checkbox"
-                                        :value="permission.id"
-                                        v-model="form.permission_ids"
-                                        :disabled="loading"
-                                        class="rounded" />
-                                    <span class="text-sm"
-                                        >{{ permission.label }} ({{
-                                            permission.name
-                                        }})</span
-                                    >
-                                </label>
-                            </div>
-                        </div>
+                        <FormPermissionPicker
+                            v-model="directPermissionIds"
+                            :disabled="loading" />
                     </UFormField>
                 </UCard>
             </section>

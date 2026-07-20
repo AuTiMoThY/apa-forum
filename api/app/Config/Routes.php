@@ -73,6 +73,14 @@ $routes->post('/company-base/save', 'CompanyBaseController::save');
 $routes->get('/agenda/get', 'AgendaController::get');
 $routes->post('/agenda/save', 'AgendaController::save');
 
+// 論壇介紹
+$routes->get('/forum/get', 'ForumController::get');
+$routes->post('/forum/save', 'ForumController::save');
+
+// 主辦單位介紹
+$routes->get('/organizer/get', 'OrganizerController::get');
+$routes->post('/organizer/save', 'OrganizerController::save');
+
 // 講師管理
 $routes->get('/lecturer/get', 'LecturerController::get');
 $routes->get('/lecturer/get-by-id', 'LecturerController::getById');

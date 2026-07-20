@@ -124,3 +124,11 @@ _modules/*
 
 /results/
 /phpunit*.xml
+
+#-------------------------
+# Node / Vite
+#-------------------------
+node_modules/
+public/hot
+# Vite 建置產物；靜態圖請放 public/images/
+public/assets/

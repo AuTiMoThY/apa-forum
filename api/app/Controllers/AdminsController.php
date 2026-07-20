@@ -325,7 +325,12 @@ class AdminsController extends BaseController
 
     public function deleteAdmin()
     {
+        $user = $this->checkAuth();
         $data = $this->request->getJSON(true) ?: $this->request->getPost();
+        $password = (string) ($data['password'] ?? '');
+        if ($resp = $this->verifyDeletePasswordResponse($user, $password)) {
+            return $resp;
+        }
         $id = $data['id'] ?? null;
         if (!$id) {
             return $this->response->setStatusCode(ResponseInterface::HTTP_BAD_REQUEST)->setJSON([

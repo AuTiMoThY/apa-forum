@@ -128,6 +128,8 @@ class Filters extends BaseFilters
                 'permission/*',
                 'company-base/save',   // GET 開放給前台未登入撈資料，僅 save 需登入
                 'agenda/save',
+                'forum/save',
+                'organizer/save',
                 'lecturer/add',
                 'lecturer/update',
                 'lecturer/update-sort-order',

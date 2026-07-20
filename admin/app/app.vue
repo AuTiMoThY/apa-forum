@@ -2,9 +2,11 @@
 const route = useRoute();
 const router = useRouter();
 
-const { getUserPermissions, hasPermission } = usePermission();
+const { getUserPermissions, hasPermission, isSuperAdmin } = usePermission();
 console.group("[app.vue]");
 console.log("所有權限:", getUserPermissions());
+console.log("是否超級管理員:", isSuperAdmin());
+console.log("是否有 system.admins.view:", hasPermission("system.admins.view"));
 console.log("是否有 system.admin.view:", hasPermission("system.admin.view"));
 console.groupEnd();
 
@@ -94,7 +96,7 @@ useHead({
 });
 
 
-const title = "2026 APA 動物保護國際論壇 後台管理系統";
+const title = "2026 國際動物保護論壇 後台管理系統";
 useSeoMeta({
   titleTemplate: '%s - ' + title,
 })

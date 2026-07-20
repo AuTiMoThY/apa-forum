@@ -330,7 +330,7 @@ onUnmounted(() => {
                     <p
                         v-if="!collapsed"
                         class="text-primary-900 dark:text-white">
-                        2026 APA 動物保護國際論壇
+                        2026 國際動物保護論壇
                     </p>
                     <span v-else class="text-2xl font-bold">A</span>
                 </NuxtLink>

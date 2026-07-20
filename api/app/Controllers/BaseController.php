@@ -12,6 +12,7 @@ use App\Models\UserRoleModel;
 use App\Models\UserPermissionModel;
 use App\Models\RolePermissionModel;
 use App\Models\PermissionModel;
+use App\Models\SysAdminModel;
 
 /**
  * Class BaseController
@@ -184,6 +185,70 @@ abstract class BaseController extends Controller
         return $user;
     }
 
+    /** JWT 為 user_id，Session 為 id */
+    protected function getAuthUserId(array $user): int
+    {
+        return (int) ($user['id'] ?? $user['user_id'] ?? 0);
+    }
+
+    /**
+     * 驗證後台 sys_admin 登入密碼（邏輯與 AuthController::login 一致）
+     *
+     * @param array<string, mixed> $user
+     */
+    protected function verifySysAdminPassword(array $user, string $password): bool
+    {
+        if ($password === '') {
+            return false;
+        }
+
+        $userId = $this->getAuthUserId($user);
+        if ($userId <= 0) {
+            return false;
+        }
+
+        $admin = (new SysAdminModel())->find($userId);
+        if (! is_array($admin) || $admin === []) {
+            return false;
+        }
+
+        $stored = (string) ($admin['password_hash'] ?? '');
+        if ($stored === '') {
+            return false;
+        }
+
+        $isFirstLogin = (int) ($admin['is_first_login'] ?? 0) === 1;
+        if ($isFirstLogin) {
+            return hash_equals($stored, $password) || password_verify($password, $stored);
+        }
+
+        return password_verify($password, $stored);
+    }
+
+    /**
+     * 刪除操作前驗證登入密碼；通過回傳 null，失敗回傳 JSON 錯誤 Response。
+     *
+     * @param array<string, mixed> $user
+     */
+    protected function verifyDeletePasswordResponse(array $user, string $password): ?ResponseInterface
+    {
+        if ($password === '') {
+            return $this->response->setStatusCode(ResponseInterface::HTTP_BAD_REQUEST)->setJSON([
+                'success' => false,
+                'message' => '請輸入登入密碼',
+            ]);
+        }
+
+        if (! $this->verifySysAdminPassword($user, $password)) {
+            return $this->response->setStatusCode(ResponseInterface::HTTP_BAD_REQUEST)->setJSON([
+                'success' => false,
+                'message' => '密碼錯誤',
+            ]);
+        }
+
+        return null;
+    }
+
     /**
      * 檢查使用者是否有指定權限
      * 
@@ -193,17 +258,18 @@ abstract class BaseController extends Controller
     protected function checkPermission($permission)
     {
         $user = $this->checkAuth();
+        $userId = $this->getAuthUserId($user);
         
         // 檢查是否為超級管理員
-        if ($this->isSuperAdmin($user['id'])) {
+        if ($this->isSuperAdmin($userId)) {
             return true;
         }
         
         // 取得使用者權限
-        $userPermissions = $this->getUserPermissions($user['id']);
+        $userPermissions = $this->getUserPermissions($userId);
         
         if (!in_array($permission, $userPermissions)) {
-            log_message('warning', 'Permission denied: User ' . ($user['username'] ?? $user['id']) . ' attempted to access ' . $permission);
+            log_message('warning', 'Permission denied: User ' . ($user['username'] ?? $userId) . ' attempted to access ' . $permission);
             
             $this->response->setStatusCode(ResponseInterface::HTTP_FORBIDDEN)->setJSON([
                 'success' => false,

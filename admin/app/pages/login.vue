@@ -62,7 +62,7 @@ const handleLogin = async () => {
 <template>
     <div
         class="min-h-screen flex flex-col gap-4 items-center justify-center bg-gray-50 dark:bg-gray-900 px-4">
-        <h1 class="text-3xl text-primary-900 dark:text-white">2026 APA 動物保護國際論壇</h1>
+        <h1 class="text-3xl text-primary-900 dark:text-white">2026 國際動物保護論壇</h1>
         <UCard class="w-full max-w-md">
             <template #header>
                 <div class="text-center">

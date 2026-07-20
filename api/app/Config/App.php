@@ -16,7 +16,7 @@ class App extends BaseConfig
      *
      * E.g., http://example.com/
      */
-    // public string $baseURL = 'https://manthiri.com.tw/api/';
+    // public string $baseURL = 'https://apaforum.clouduns.com/api/';
     public string $baseURL = 'http://localhost:8092/';
 
     /**

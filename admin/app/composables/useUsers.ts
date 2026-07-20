@@ -260,32 +260,46 @@ export const useUsers = () => {
         }
     };
 
-    const deleteAdmin = async (admin: any) => {
-        console.log(admin);
+    const deleteAdmin = async (
+        id: number | string,
+        password: string,
+        options?: {
+            onSuccess?: () => void;
+        }
+    ) => {
+        if (!id) {
+            toast.add({ title: "缺少管理員 ID", color: "error" });
+            return false;
+        }
+        loading.value = true;
         try {
             const response = await $fetch<{
                 success: boolean;
                 message: string;
-            }>("/admins/delete", {
-                baseURL: apiBase,
+            }>(`${apiBase}/admins/delete`, {
                 method: "POST",
-                body: { id: admin.id },
+                body: { id, password },
                 headers: { "Content-Type": "application/json" },
                 credentials: "include"
             });
-            console.log(response);
             if (response.success) {
                 toast.add({ title: response.message, color: "success" });
-                fetchData();
-            } else {
-                toast.add({ title: response.message, color: "error" });
+                options?.onSuccess?.();
+                return true;
             }
+            toast.add({ title: response.message, color: "error" });
+            return false;
         } catch (error: any) {
+            const data = error?.data || error?.response?._data;
+            const msg =
+                (typeof data?.message === "string" && data.message) ||
+                error?.message ||
+                "刪除管理員失敗，請稍後再試";
             console.error("deleteAdmin error", error);
-            toast.add({
-                title: error.message || "刪除管理員失敗，請稍後再試",
-                color: "error"
-            });
+            toast.add({ title: msg, color: "error" });
+            return false;
+        } finally {
+            loading.value = false;
         }
     };
 

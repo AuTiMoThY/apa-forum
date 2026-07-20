@@ -12,7 +12,7 @@ const isProduction = processEnv?.NODE_ENV === "production";
 // 注意：執行 generate 時，Nuxt 會自動設定 NODE_ENV=production
 const apiBase =
     processEnv?.NUXT_PUBLIC_API_BASE ||
-    (isProduction ? "https://manthiri.com.tw/api" : "http://localhost:8092");
+    (isProduction ? "https://apaforum.clouduns.com/api" : "http://localhost:8092");
 
 console.log("========== apiBase ==========", apiBase);
 export default defineNuxtConfig({
