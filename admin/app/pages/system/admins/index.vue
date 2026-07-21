@@ -21,7 +21,8 @@ import { STATUS_ICON_MAP } from "~/constants/system/status_icon";
 
 const UButton = resolveComponent("UButton");
 const UIcon = resolveComponent("UIcon");
-// 管理員設定選單不要求權限（constants/menu/system.ts），維持原 UI：登入者皆可見操作按鈕
+const { isSuperAdmin } = usePermission();
+const canManageAdmins = computed(() => isSuperAdmin());
 
 /** 可排序欄位標題 */
 function sortableHeader(label: string): TableColumn<any>["header"] {
@@ -115,7 +116,7 @@ const filteredData = computed(() => {
     });
 });
 
-const columns: TableColumn<any>[] = [
+const columns = computed<TableColumn<any>[]>(() => [
     { accessorKey: "username", header: "帳號" },
     { accessorKey: "name", header: "姓名" },
     {
@@ -163,26 +164,31 @@ const columns: TableColumn<any>[] = [
     {
         header: "操作",
         cell: ({ row }) => {
-            return h("div", { class: "flex items-center gap-2" }, [
+            const actions = [
                 h(UButton, {
                     icon: "i-lucide-edit",
                     label: "編輯",
                     color: "primary",
                     size: "xs",
                     onClick: () => editAdmin(row.original)
-                }),
-                h(UButton, {
-                    icon: "i-lucide-trash",
-                    label: "刪除",
-                    color: "error",
-                    variant: "ghost",
-                    size: "xs",
-                    onClick: () => handleDelete(row.original)
                 })
-            ]);
+            ];
+            if (canManageAdmins.value) {
+                actions.push(
+                    h(UButton, {
+                        icon: "i-lucide-trash",
+                        label: "刪除",
+                        color: "error",
+                        variant: "ghost",
+                        size: "xs",
+                        onClick: () => handleDelete(row.original)
+                    })
+                );
+            }
+            return h("div", { class: "flex items-center gap-2" }, actions);
         }
     }
-];
+]);
 
 const editAdmin = (admin: any) => {
     router.push(`/system/admins/edit/${admin.id}`);
@@ -205,6 +211,7 @@ async function onDeletePasswordConfirm(password: string) {
 }
 
 const handleDelete = (admin: any) => {
+    if (!canManageAdmins.value) return;
     deleteTarget.value = { id: admin.id, name: admin.name };
     deleteConfirmModalOpen.value = true;
 };
@@ -230,6 +237,7 @@ onMounted(() => {
                 </template>
                 <template #right>
                     <UButton
+                        v-if="canManageAdmins"
                         label="新增管理員"
                         color="primary"
                         icon="lucide:plus"

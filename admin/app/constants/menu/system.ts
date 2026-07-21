@@ -22,6 +22,14 @@ export const system: (open: Ref<boolean>) => NavigationMenuItem = (open) => {
 
     // 定義所有系統選單項目及其對應權限
     const allMenuItems: SystemMenuItem[] = [
+        // {
+        //     label: "基本設定",
+        //     icon: "lucide:building-2",
+        //     to: "/base",
+        //     onSelect: () => {
+        //         open.value = false;
+        //     },
+        // },
         {
             label: "管理員設定",
             icon: "lucide:user-cog",

@@ -3,6 +3,11 @@ definePageMeta({
     middleware: ["auth", "permission"]
 });
 
+const { isSuperAdmin } = usePermission();
+if (!isSuperAdmin()) {
+    await navigateTo("/system/admins");
+}
+
 const title = "新增管理員";
 useSeoMeta({
   title
