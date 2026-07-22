@@ -101,6 +101,13 @@
             @apply translate-x-0;
         }
     }
+
+    .mobile-menu {
+        @apply h-[100svh];
+        .txt-tw {
+            @apply text-xl;
+        }
+    }
 }
 
 @layer section {
