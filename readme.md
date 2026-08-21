@@ -19,11 +19,6 @@
 [Routes](/api/app/Config/Routes.php)
 [Filters](/api/app/Config/Filters.php)
 [mysql init](/docker/mysql/init/)
-[test-db-connection](http://localhost:8092/test-db-connection)
-[test-db-connection2](http://localhost:8092/test-db-connection2)
-[test-cors](http://localhost:8092/test-cors)
-[test-jwt](http://localhost:8092/test-jwt)
-[test-login (POST)](http://localhost:8092/test-login)
 
 ## 快速開始
 

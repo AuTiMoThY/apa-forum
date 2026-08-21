@@ -1,0 +1,215 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>2026 國際動物保護論壇</title>
+    <meta name="description" content="2026 國際動物保護論壇官方網站">
+    <link rel="icon" href="favicon.ico">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Newsreader:opsz,wght@6..72,400;6..72,600;6..72,700&family=Noto+Sans+TC:wght@400;500;700&family=Noto+Serif+TC:wght@500;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="assets/main.css">
+</head>
+<body class="min-h-screen flex flex-col pt-[var(--header-height)]">
+    <header data-site-header
+        class="main_header group fixed inset-x-0 top-0 z-50 transition duration-300 bg-[#F7EDE1] [&.is-scrolled]:backdrop-blur-md [&.is-scrolled]:shadow-lg [&.is-scrolled]:shadow-ink/10">
+        <div class="mx-auto flex items-center justify-between gap-10 px-5 md:px-8">
+            <a href="index.html" class="group flex min-w-0 max-lg:max-w-[min(280px,68vw)]">
+                <img src="images/apa-logo.png" alt="Logo" class="w-[404px] max-lg:w-full aspect-[404/70]">
+            </a>
+
+            <nav aria-label="主要導覽" class="hidden items-center gap-8 lg:flex">
+                <a href="#forum" class="nav-item">
+                    <span class="txt-tw">
+                        <img src="images/nav-1.png" alt="論壇介紹"
+                            class="txt-img aspect-[123/25]">
+                    </span>
+                </a>
+                <a href="#organizer" class="nav-item">
+                    <span class="txt-tw">
+                        <img src="images/nav-2.png" alt="主辦單位介紹"
+                            class="txt-img aspect-[184/25]">
+                    </span>
+                </a>
+                <a href="#agenda" class="nav-item">
+                    <span class="txt-tw">
+                        <img src="images/nav-3.png" alt="議程說明"
+                            class="txt-img aspect-[123/25]">
+                    </span>
+                </a>
+                <a href="#speaker" class="nav-item">
+                    <span class="txt-tw">
+                        <img src="images/nav-4.png" alt="講師介紹"
+                            class="txt-img aspect-[123/25]">
+                    </span>
+                </a>
+                <a href="#partners" class="nav-item">
+                    <span class="txt-tw">
+                        <img src="images/nav-5.png" alt="合作夥伴"
+                            class="txt-img aspect-[123/25]">
+                    </span>
+                </a>
+                <a href="#registration" class="nav-item">
+                    <span class="txt-tw">
+                        <img src="images/nav-6.png" alt="立即報名"
+                            class="txt-img aspect-[123/25]">
+                    </span>
+                </a>
+            </nav>
+
+            <button type="button" data-menu-toggle
+                class="hamburger relative z-[60] flex h-11 w-11 shrink-0 flex-col items-center justify-center gap-[5px] lg:hidden"
+                aria-label="開啟選單" aria-expanded="false" aria-controls="mobile-menu">
+                <span class="hamburger-line"></span>
+                <span class="hamburger-line"></span>
+                <span class="hamburger-line"></span>
+            </button>
+        </div>
+
+        <div data-menu-overlay
+            class="menu-overlay fixed inset-0 z-40 bg-ink/40 opacity-0 pointer-events-none transition-opacity duration-300 lg:hidden group-[.is-menu-open]:opacity-100 group-[.is-menu-open]:pointer-events-auto"
+            aria-hidden="true"></div>
+
+        <nav id="mobile-menu" data-mobile-menu aria-label="手機導覽" aria-hidden="true"
+            class="mobile-menu fixed inset-y-0 right-0 z-50 flex h-[100svh] w-[min(20rem,85vw)] translate-x-full flex-col bg-[#F7EDE1] shadow-xl transition-transform duration-300 ease-out lg:hidden group-[.is-menu-open]:translate-x-0">
+            <div class="flex flex-col gap-1 overflow-y-auto px-4 pb-8 pt-20">
+                <a href="#forum" class="nav-item">
+                    <span class="txt-tw">
+                        <img src="images/nav-1.png" alt="論壇介紹"
+                            class="txt-img">
+                    </span>
+                </a>
+                <a href="#organizer" class="nav-item">
+                    <span class="txt-tw">
+                        <img src="images/nav-2.png" alt="主辦單位介紹"
+                            class="txt-img">
+                    </span>
+                </a>
+                <a href="#agenda" class="nav-item">
+                    <span class="txt-tw">
+                        <img src="images/nav-3.png" alt="議程說明"
+                            class="txt-img">
+                    </span>
+                </a>
+                <a href="#speaker" class="nav-item">
+                    <span class="txt-tw">
+                        <img src="images/nav-4.png" alt="講師介紹"
+                            class="txt-img">
+                    </span>
+                </a>
+                <a href="#partners" class="nav-item">
+                    <span class="txt-tw">
+                        <img src="images/nav-5.png" alt="合作夥伴"
+                            class="txt-img">
+                    </span>
+                </a>
+                <a href="#registration" class="nav-item">
+                    <span class="txt-tw">
+                        <img src="images/nav-6.png" alt="立即報名"
+                            class="txt-img">
+                    </span>
+                </a>
+            </div>
+        </nav>
+    </header>
+
+    <main id="main" class="flex-1">
+        <section id="kv" class="relative isolate w-full aspect-[1920/1080] overflow-hidden">
+            <div class="reveal hero-pan absolute inset-0 origin-center" data-reveal>
+                <img src="images/kv.jpg" alt="2026 國際動物保護論壇"
+                    class="w-full h-full object-cover">
+                <!-- 立即報名位置：以 KV 設計稿 1920×1080 的像素為單位，改 --kv-btn-x（左）與 --kv-btn-y（上） -->
+                <a href="#registration" class="kv-btn" style="--kv-btn-x: 390; --kv-btn-y: 860;" aria-label="立即報名">
+                    <img src="images/kv-btn.png" alt="立即報名 REGISTRATION"
+                        class="w-full h-full object-contain">
+                </a>
+            </div>
+        </section>
+
+        <section id="forum" class="section-forum relative isolate py-20 md:py-28 bg-[#F7EDE1] max-lg:min-h-0 min-h-[calc(2471/var(--design-w)*100vw)]">
+            <img src="images/bg-forum.png" alt="" aria-hidden="true"
+                class="pointer-events-none absolute left-0 top-0 -z-10 w-full h-auto max-lg:hidden">
+            <div class="mx-auto px-10 md:px-16 flex items-top gap-10 max-lg:flex-col max-lg:items-center max-lg:gap-0">
+                <div class="hidden max-lg:block title w-[calc(512/var(--design-w)*100vw)] ">
+                    <img src="images/title-forum.png" alt="論壇介紹"
+                        class="w-full aspect-[512/103] object-cover">
+                </div>
+                <div class="max-lg:hidden w-[calc(591/var(--design-w)*100vw)] shrink-0" aria-hidden="true"></div>
+                <div class="hidden max-lg:block reveal w-[calc(858/var(--design-w-mobile)*100vw)] shrink-0" data-reveal>
+                    <img src="images/pic-1-m.png" alt=""
+                        class="w-full aspect-[873/199] object-contain">
+                </div>
+
+                <!-- 內文寬度：桌機改 980、手機改 858（越大越寬） -->
+                <!-- 內文右移：僅桌機改 --forum-offset-x（越大越靠右）；手機置中無 margin-left -->
+                <div class="reveal w-[calc(980/var(--design-w)*100vw)] max-lg:w-[calc(858/var(--design-w-mobile)*100vw)] max-lg:mx-auto ml-[calc(var(--forum-offset-x)/var(--design-w)*100vw)] max-lg:ml-0"
+                    style="--forum-offset-x: 30;" data-reveal>
+                    <div class="max-lg:hidden title w-[calc(512/var(--design-w)*100vw)] ">
+                        <img src="images/title-forum.png" alt="論壇介紹"
+                            class="w-full aspect-[512/103] object-cover">
+                    </div>
+                    <p class="mt-[4rem] text-tw leading-relaxed text-justify text-black">
+                        動物福利已成為全球文明社會的重要指標之一，亦與公共衛生、社會安全及生命教育密切相關。台灣政府不斷推出動物保護政策以加強動物福利及動保觀念，2017年推動零撲殺政策，在動物保護制度上逐步建立具人道精神的治理模式，但隨著時間的流逝，全臺灣流浪動物的衝突卻未見止息，去年在高雄市永安區更迸發浪犬咬死泳客的悲劇，野生動物因為浪犬産生無數的消亡，如何解決流浪犬問題正是刻不容緩的議題。<br>
+                        <br>
+                        2026國際動物保護論壇透過國際遊蕩犬現況及野外族群控制、源頭管理與犬隻總量管制、産業影響力帶動社會動保參與、收容管理與永續經營及協會獨步全球的狗來富專案等五大議題進行國際交流，分享臺灣經驗並促進國際動物保護合作，一同凝聚臺灣動物保護福利及流浪動物的新解方。
+                    </p>
+                    <p class="mt-[4rem] text-en leading-relaxed text-justify text-black">
+                        Animal welfare has become a key indicator of civil society worldwide, closely intertwined with public health, social safety, and life education. The Taiwanese government has continuously introduced animal protection policies to strengthen animal welfare and public awareness. Notably, the implementation of the "zero-euthanasia" policy in 2017 marked a gradual shift toward a governance model rooted in humanitarian principles. However, despite these efforts, conflicts surrounding stray animals across Taiwan have not ceased. Last year, a tragedy occurred in the Yongan District of Kaohsiung City, where a swimmer was fatally attacked by roaming dogs; furthermore, countless wildlife species continue to perish due to conflicts with free-ranging dogs. Addressing the issue of stray dogs has truly become a matter of utmost urgency.<br>
+                        <br>
+                        The 2026 International Animal Protection Forum serves as a platform for global exchange, focusing on five core themes:<br>
+                        1. International Status of Roaming Dogs and Free-Ranging Population Control.<br>
+                        2. Source Management and Dog Population Caps.<br>
+                        3. Driving Social Engagement in Animal Protection via Industry Influence.<br>
+                        4. Shelter Management and Sustainable Operations; and<br>
+                        5. The APA's Globally Unique "Go Home Project."<br>
+                        <br>
+                        By sharing Taiwan's experiences and fostering international cooperation in animal protection, this forum aims to collectively forge innovative solutions for animal welfare and stray animal management in Taiwan.
+                    </p>
+                </div>
+            </div>
+        </section>
+
+        <section id="organizer" class="section-organizer relative isolate py-20 md:py-28 bg-[#F7EDE1] max-lg:min-h-0 min-h-[calc(1630/var(--design-w)*100vw)]">
+            <img src="images/bg-organizer.png" alt="" aria-hidden="true"
+                class="pointer-events-none absolute left-0 top-0 -z-10 w-full h-auto max-lg:hidden">
+            <div class="mx-auto px-10 md:px-16 flex items-top gap-10 max-lg:flex-col max-lg:items-center max-lg:gap-0">
+                <div class="hidden max-lg:block title w-[calc(772/var(--design-w)*100vw)]">
+                    <img src="images/title-organizer.png" alt="主辦單位介紹"
+                        class="w-full aspect-[772/105] object-cover">
+                </div>
+                <div class="hidden max-lg:block reveal w-[calc(945/var(--design-w-mobile)*100vw)] shrink-0" data-reveal>
+                    <img src="images/pic-2-m.png" alt=""
+                        class="w-full aspect-[951/202] object-contain">
+                </div>
+
+                <!-- 內文寬度：桌機改 980、手機改 858（越大越寬） -->
+                <!-- 內文左右位置：桌機改 --organizer-offset-x、手機改 --organizer-offset-x-mobile（越大越靠右） -->
+                <div class="reveal flex flex-col w-[calc(980/var(--design-w)*100vw)] max-lg:w-[calc(858/var(--design-w-mobile)*100vw)] ml-[calc(var(--organizer-offset-x)/var(--design-w)*100vw)] max-lg:ml-[calc(var(--organizer-offset-x-mobile)/var(--design-w-mobile)*100vw)]"
+                    style="--organizer-offset-x: 90; --organizer-offset-x-mobile: 0;" data-reveal>
+                    <div class="max-lg:hidden title w-[calc(772/var(--design-w)*100vw)]">
+                        <img src="images/title-organizer.png" alt="主辦單位介紹"
+                            class="w-full aspect-[772/105] object-cover">
+                    </div>
+                    <p class="mt-[4rem] text-tw leading-relaxed text-justify text-black">
+                        成立於民國49年6月4日的中華民國保護動物協會，至今已有超過60年歷史，在過去的歳月中，除致力於宣導動物保護觀念外，也設立了動物保育場，從事流浪動物收容工作。分別於民國78年及87年催生「野生動物保育法」與「動物保護法」。近年來協會更是擴大社會責任，開辦「狗來富專案」、「寵物食物銀行」等勸募活動，並開設動物保護志工培訓課程培育動保所需志工，透過多元的方式增進動物福利進而解決流浪動物所造成的社會問題。
+                    </p>
+                    <p class="mt-[4rem] text-en leading-relaxed text-justify text-black">
+                        Founded on June 4, 1960, the Animal Protection Association of the Republic of China (APA) boasts a history spanning over six decades. Throughout its years of dedication, the Association has not only championed the core concepts of animal protection but also established animal shelters dedicated to the rescue and care of stray animals. Notably, the APA played a pivotal role in promoting and establishing the Wildlife Conservation Act in 1989 and the Animal Protection Act in 1998.<br>
+                        <br>
+                        In recent years, the Association has further expanded its social responsibility by launching public fundraising initiatives such as the "Go Home Project" (for rehoming stray dogs) and the "Pet Food Bank." Furthermore, it offers animal protection volunteer training programs to cultivate professional talent in the field. Through these diverse strategies, the APA continues to enhance animal welfare and proactively address the social challenges associated with stray animals.
+                    </p>
+                </div>
+                <div class="max-lg:hidden w-[calc(556/var(--design-w)*100vw)] shrink-0 order-2" aria-hidden="true"></div>
+            </div>
+        </section>
+    </main>
+
+    <footer class="bg-[#F7EDE1] py-4 flex justify-center">
+        <img src="images/copyright.png" alt="Copyright 2026 社團法人中華民國保護動物協會 All rights reserved."
+            class="w-[calc(1115/var(--design-w)*100vw)] max-w-[min(1115px,92vw)] aspect-[1115/31] object-contain">
+    </footer>
+
+    <script src="assets/main-Bxlv_Ffr.js"></script>
+</body>
+</html>
